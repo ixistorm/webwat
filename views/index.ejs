@@ -30,6 +30,25 @@
       </div>
     </nav>
     
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <ul class="list-group">
+            <% publics.map((item, index) => { %>
+            <li class="list-group-item"><a href="/news/<%= item.id %>"><%= item.title %></a></li>
+            <% }) %>
+          </ul>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <ul class="list-group">
+            <% activities.map((activity, index) => { %>
+            <li class="list-group-item"><a href="/news/<%= activity.id %>"><%= activity.title %></a></li>
+            <% }) %>
+          </ul>
+        </div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+          หน้า3
+        </div>
+      </div>
 
     <center>
       <h3 class=" mt-3">รีวิว</h3>
@@ -76,7 +95,7 @@
   <div class="col-3">
     <center>
       <h4 class="mt-3"></h4>
-      <img src="/img/v10.png" alt="" class=""> <br>
+      <img src="http://www.วัดพระสิงห์เชียงใหม่.com/images/V10.png" alt="" class=""> <br>
       พระเทพสิงหวราจารย์,ดร.<br>
       (โสภณ โสภโณ)
       <br>
