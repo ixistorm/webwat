@@ -2,54 +2,35 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
   <!-- Page Heading -->
-  <h1 class="h3 mb-4 text-gray-800">เพิ่มข่าวใหม่</h1>
+  <h1 class="h3 mb-4 text-gray-800">แก้ไขข่าว - <%= news.title %></h1>
   <div class="card">
     <div class="card-header">
       เพิ่มข่าวใหม่
     </div>
     <div class="card-body">
-      <form
-        action="/admin/news/create"
-        enctype="multipart/form-data"
-        method="POST"
-      >
+      <form action="/admin/news/update/<%= news.id %>" enctype="multipart/form-data" method="POST">
         <div class="form-group">
           <label for="inputTitle">หัวข้อข่าว</label>
-          <input
-            type="text"
-            name="title"
-            id="inputTitle"
-            required
-            minlength="3"
-            placeholder="กรอกหัวข้อข่าว..."
-            class="form-control"
-          />
+          <input type="text" name="title" value="<%= news.title %>" id="inputTitle" required minlength="3"
+            placeholder="กรอกหัวข้อข่าว..." class="form-control" />
         </div>
         <div class="form-group">
           <label>หมวดหมู่</label>
           <select name="category_id" id="selectCategoryId" class="form-control">
             <% categories.forEach((category, index) => { %>
-            <option value="<%= category.id %>"><%= category.name %></option>
+            <option <%= category.id == news.category_id ? "selected" : "" %> value="<%= category.id %>">
+              <%= category.name %></option>
             <% }) %>
           </select>
         </div>
         <div class="form-group">
           <label for="inputThumbnail">รูปประจำข่าว</label> <br />
-          <input
-            type="file"
-            accept="image/*"
-            name="thumbnail"
-            id="inputThumbnail"
-          />
+          <p>*หากต้องการแทนที่รูปภาพให้เลือกรูปใหม่</p>
+          <img src="<%= news.thumbnail %>" alt="thumbnail" width="150" class="mb-3"> <br>
+          <input type="file" accept="image/*" name="thumbnail" id="inputThumbnail" />
         </div>
         <div class="form-group">
-          <textarea
-            class="form-control"
-            name="detail"
-            id="summernote"
-            cols="30"
-            rows="10"
-          ></textarea>
+          <textarea class="form-control" name="detail" id="summernote" cols="30" rows="10"><%= news.detail %></textarea>
         </div>
         <button type="submit" class="btn btn-primary">
           <i class="fa fa-save"></i> บันทึก
@@ -64,14 +45,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote-cleaner@1.0.0/summernote-cleaner.min.js"></script>
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $("#summernote").summernote({
       height: 250,
       callbacks: {
-        onImageUpload: function(files) {
+        onImageUpload: function (files) {
           var data = new FormData();
           data.append("file", files[0]);
-          axios.post("/api/imageUpload", data).then(function(result) {
+          axios.post("/api/imageUpload", data).then(function (result) {
             var imgNode = result.data;
             $("#summernote").summernote("insertImage", imgNode);
           });

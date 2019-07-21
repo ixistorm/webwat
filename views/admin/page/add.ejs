@@ -2,39 +2,31 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
   <!-- Page Heading -->
-  <h1 class="h3 mb-4 text-gray-800">เพิ่มข่าวใหม่</h1>
+  <h1 class="h3 mb-4 text-gray-800">เพิ่มหน้าใหม่</h1>
   <div class="card">
     <div class="card-header">
-      เพิ่มข่าวใหม่
+      เพิ่มหน้าใหม่
     </div>
     <div class="card-body">
       <form
-        action="/admin/news/create"
+        action="/admin/page/create"
         enctype="multipart/form-data"
         method="POST"
       >
         <div class="form-group">
-          <label for="inputTitle">หัวข้อข่าว</label>
+          <label for="inputTitle">หัวข้อหน้า</label>
           <input
             type="text"
             name="title"
             id="inputTitle"
             required
             minlength="3"
-            placeholder="กรอกหัวข้อข่าว..."
+            placeholder="กรอกหัวข้อหน้า..."
             class="form-control"
           />
         </div>
         <div class="form-group">
-          <label>หมวดหมู่</label>
-          <select name="category_id" id="selectCategoryId" class="form-control">
-            <% categories.forEach((category, index) => { %>
-            <option value="<%= category.id %>"><%= category.name %></option>
-            <% }) %>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="inputThumbnail">รูปประจำข่าว</label> <br />
+          <label for="inputThumbnail">รูปประจำหน้า</label> <br />
           <input
             type="file"
             accept="image/*"
