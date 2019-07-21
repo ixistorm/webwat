@@ -3,7 +3,7 @@ import mysql from "mysql";
 const connection = mysql.createConnection({
   multipleStatements: true,
   host: "localhost",
-  user: "root",
+  user: "admin",
   password: "",
   database: "webwat"
 });
