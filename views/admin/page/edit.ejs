@@ -2,39 +2,39 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
   <!-- Page Heading -->
-  <h1 class="h3 mb-4 text-gray-800">เพิ่มข่าวใหม่</h1>
+  <h1 class="h3 mb-4 text-gray-800">แก้ไขหน้า - <%= page.title %></h1>
   <div class="card">
     <div class="card-header">
-      เพิ่มข่าวใหม่
+      แก้ไขหน้าใหม่
     </div>
     <div class="card-body">
       <form
-        action="/admin/news/create"
+        action="/admin/page/update/<%= page.id %>"
         enctype="multipart/form-data"
         method="POST"
       >
         <div class="form-group">
-          <label for="inputTitle">หัวข้อข่าว</label>
+          <label for="inputTitle">หัวข้อหน้า</label>
           <input
             type="text"
             name="title"
             id="inputTitle"
             required
+            value="<%= page.title %>"
             minlength="3"
-            placeholder="กรอกหัวข้อข่าว..."
+            placeholder="กรอกหัวข้อหน้า..."
             class="form-control"
           />
         </div>
         <div class="form-group">
-          <label>หมวดหมู่</label>
-          <select name="category_id" id="selectCategoryId" class="form-control">
-            <% categories.forEach((category, index) => { %>
-            <option value="<%= category.id %>"><%= category.name %></option>
-            <% }) %>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="inputThumbnail">รูปประจำข่าว</label> <br />
+          <label for="inputThumbnail">รูปประจำหน้า</label> <br />
+          <img
+            src="<%= page.thumbnail %>"
+            width="250"
+            alt="<%= page.title %>"
+          />
+          <br />
+          <p class="mt-3 mb-3">*หากไม่ต้องการแก้ไขให้เว้นว่างไว้</p>
           <input
             type="file"
             accept="image/*"
@@ -49,7 +49,9 @@
             id="summernote"
             cols="30"
             rows="10"
-          ></textarea>
+          >
+<%= page.detail %></textarea
+          >
         </div>
         <button type="submit" class="btn btn-primary">
           <i class="fa fa-save"></i> บันทึก

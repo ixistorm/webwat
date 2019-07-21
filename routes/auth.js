@@ -9,14 +9,15 @@ export const SALT_ROUND = 10;
 
 router.get("/add-sample-data", (req, res, next) => {
   const data = [
-    "Bundit Nunates",
+    "บัณฑิต นันทะเทศ",
     "admin",
     bcrypt.hashSync("1234", SALT_ROUND),
     "silkyland@gmail.com",
-    "1"
+    "1",
+    "/img/150x150.png"
   ];
   const SQL =
-    "INSERT INTO users (name, username, password, email, role) VALUES (?, ?, ?, ?, ?)";
+    "INSERT INTO users (name, username, password, email, role_id, avatar) VALUES (?, ?, ?, ?, ?, ?)";
   connection.query(SQL, [...data], (err, user) => {
     if (err) return res.send(err.message);
     res.send("Save Success");
@@ -43,7 +44,6 @@ router.post("/login", async (req, res, next) => {
   }
   const query = "SELECT * FROM users WHERE username = ?";
   connection.query(query, [username], async (error, result) => {
-    console.log(error);
     if (error) return res.send(error.message);
     if (
       result.length < 1 ||
