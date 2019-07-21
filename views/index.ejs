@@ -6,31 +6,38 @@
   <div class="col-9">
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img
-            src="https://www.cmru.ac.th/assets/images/banners/th/01-07-2019/c5dc13584d5185549b2dfb751398ff8362dc05d2.jpg"
-            class="d-block w-100" alt="...">
+            <% banners.map((banner, index) => { %>
+            <div class="carousel-item <%= index + 1 == 1 ? 'active' : '' %> ">
+              <img src="<%= banner.path %>" class="d-block w-100" alt="..." />
+            </div>
+            <% }) %>
+
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div><div class="carousel-inner">
+            <% banners.map((banner, index) => { %>
+            <div class="carousel-item <%= index + 1 == 1 ? 'active' : '' %> ">
+              <img src="<%= banner.path %>" class="d-block w-100" alt="..." />
+            </div>
+            <% }) %>
+
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-        <div class="carousel-item">
-          <img
-            src="https://www.cmru.ac.th/assets/images/banners/th/03-05-2019/655cc6fb04b937eff2a430ed74c7cf1e4dce0772.png"
-            class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img
-            src="https://www.cmru.ac.th/assets/images/banners/th/22-06-2019/133fd4d4a47ef2f72e7559d481493753caf03f26.jpg"
-            class="d-block w-100" alt="...">
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
     <nav class="mt-2">
 
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -43,18 +50,24 @@
       </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-        <ul class="list-group">
-          <li class="list-group-item">1</li>
-          <li class="list-group-item">2</li>
-          <li class="list-group-item">3</li>
-          <li class="list-group-item">4</li>
-          <li class="list-group-item">5</li>
-        </ul>
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <ul class="list-group">
+            <% publics.map((item, index) => { %>
+            <li class="list-group-item"><a href="/news/<%= item.id %>"><%= item.title %></a></li>
+            <% }) %>
+          </ul>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <ul class="list-group">
+            <% activities.map((activity, index) => { %>
+            <li class="list-group-item"><a href="/news/<%= activity.id %>"><%= activity.title %></a></li>
+            <% }) %>
+          </ul>
+        </div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+          หน้า3
+        </div>
       </div>
-      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">หน้า2</div>
-      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">หน้า3</div>
-    </div>
 
     <center>
       <h3 class=" mt-3">รีวิว</h3>
@@ -62,7 +75,7 @@
     <div class="row mt-3">
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top" src="/img/wongnai.jpg" alt="Card image cap">
+          <img class="card-img-top" src="https://pbs.twimg.com/profile_images/924844020022386688/CsB-uXT1.jpg" alt="">
           <div class="card-body">
             <h5 class="card-title">Wongnai</h5>
             <p class="card-text">ได้รับการรีวิวจากเว็บไซต์ wongnai และผู้คนที่ได้ไปวัดพระสิงห์
@@ -75,7 +88,9 @@
       </div>
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top" src="/img/trip.png" alt="Card image cap">
+          <img class="card-img-top"
+            src="data:image/png;base64,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"
+            alt="">
           <div class="card-body">
             <h5 class="card-title">TripAdvisor</h5>
             <p class="card-text">ได้รับการรีวิวจากนักท่องเที่ยว การให้คะแนนโดยนักท่องเที่ยว และความคิดเห็นต่างๆ
@@ -87,10 +102,11 @@
       </div>
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top" src="/img/me.jpg" alt="Card image cap">
+          <img class="card-img-top" src="https://pbs.twimg.com/profile_images/611374523028410368/9am2UBpo.png" alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">ได้ที่นักท่องเที่ยวที่เป็นช่างภาพได้มาเขียนรีวิวเกี่ยวกับ วัดพระสิงห์ ในเว็บไซต์ Readme.me และรูปภาพภายในวัดพระสิงห์ </p>
+            <h5 class="card-title">Readme.me</h5>
+            <p class="card-text">ได้ที่นักท่องเที่ยวที่เป็นช่างภาพได้มาเขียนรีวิวเกี่ยวกับ วัดพระสิงห์ ในเว็บไซต์
+              Readme.me และรูปภาพภายในวัดพระสิงห์ </p>
             <a href="https://th.readme.me/p/3933" class="btn btn-primary">เว็บไซต์</a>
           </div>
         </div>
@@ -100,7 +116,7 @@
   <div class="col-3">
     <center>
       <h4 class="mt-3"></h4>
-      <img src="/img/v10.png" alt="" class=""> <br>
+      <img src="http://www.วัดพระสิงห์เชียงใหม่.com/images/V10.png" alt="" class=""> <br>
       พระเทพสิงหวราจารย์,ดร.<br>
       (โสภณ โสภโณ)
       <br>
